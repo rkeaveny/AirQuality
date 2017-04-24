@@ -53,6 +53,8 @@ document.getElementById("City-Description").innerHTML = nameInput;
     //_aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><p style='font-size:30px'> The Air Quality  is  %aqiv </p><p id='attr' style='display:none;'> %attribution </p> ",  container:"city-aqi-container",  city:nameInput.toString(), lang:null  });
 var promise = new Promise(function(resolve, reject) {
   _aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><div style='font-size:30px'> The Air Quality  is <b> %aqiv </b> </div><p id='attr' style='display:none;'> %attribution </p><p id='imp' style='display:none;'>%impact </p> ",  container:"city-aqi-container",  city:nameInput.toString().replace(/ /g,''), lang:null  });
+ //http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=64525199534a6a11475cff03866c7e29
+ //api.openweathermap.org/data/2.5/weather?q={cityname}
   setTimeout(function() {resolve(5); }, 3000);
 });
 
@@ -69,21 +71,27 @@ function gradient(inp){
   console.log(inp);
   if (inp.toString() == "Good"){
     document.getElementById("gradient").style.backgroundColor = "#31bc1c";
+    alert("You're good to go! The air is clear!");
   }
     else if (inp.toString() == "Moderate"){
     document.getElementById("gradient").style.backgroundColor = "#f7ff21";
+    alert("The air is okay, not great, but you'll survive.");
   }
     else if (inp.toString() == "UnhealthyforSensitiveGroups"){
     document.getElementById("gradient").style.backgroundColor = "#eda115";
+    alert("For certain people with respiratory conditions the air isn't safe, but other people will be unaffected.");
   }
     else if (inp.toString() == "Unhealthy"){
     document.getElementById("gradient").style.backgroundColor = "#cc340e";
+    alert("The air is pretty unhealthy to breathe, you'll likely experience health effects if you breathe it! I would stay indoors.");
   }
     else if (inp.toString() == "VeryUnhealthy"){
     document.getElementById("gradient").style.backgroundColor = "#4c1789";
+    alert("The air is extremely unhealthy and everyone who breathes the air will be negatively affected. Definitely stay indoors!");
   }
     else if (inp.toString() == "Hazardous"){
     document.getElementById("gradient").style.backgroundColor = "#561010";
+    alert("HAZARDOUS! BREATHING THE AIR WILL CAUSE SERIOUS NEGATIVE HEALTH EFFECTS! STAY INDOORS!");
   }
 };
 
