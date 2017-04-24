@@ -52,7 +52,7 @@ console.log(nameInput);
 document.getElementById("City-Description").innerHTML = nameInput;
     //_aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><p style='font-size:30px'> The Air Quality  is  %aqiv </p><p id='attr' style='display:none;'> %attribution </p> ",  container:"city-aqi-container",  city:nameInput.toString(), lang:null  });
 var promise = new Promise(function(resolve, reject) {
-  _aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><div style='font-size:30px'> The Air Quality  is  %aqiv </div><p id='attr' style='display:none;'> %attribution </p><p id='imp' style='display:none;'>%impact </p> ",  container:"city-aqi-container",  city:nameInput.toString().replace(/ /g,''), lang:null  });
+  _aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><div style='font-size:30px'> The Air Quality  is <b> %aqiv </b> </div><p id='attr' style='display:none;'> %attribution </p><p id='imp' style='display:none;'>%impact </p> ",  container:"city-aqi-container",  city:nameInput.toString().replace(/ /g,''), lang:null  });
   setTimeout(function() {resolve(5); }, 3000);
 });
 
