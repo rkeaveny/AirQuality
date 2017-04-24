@@ -18,6 +18,35 @@ h1{
   position: relative;
   margin: auto;
 }
+#end{
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left:0;
+  background-color: black;
+  color:gray;
+  width:100%;
+
+}
+#city-aqi-container{
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
+#gradient{
+  height:600px;
+}
+footer{
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  color: white;
+  height: 80px;
+}
 .cityField{
   font-family: 'Open Sans', sans-serif;
   align-content: center;
