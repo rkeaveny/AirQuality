@@ -37,18 +37,34 @@
            </span>
       </section>
     <div style="text-align: center;">
-      <button id="goTime" type="button" onmouseover="ih8myself()" onmouseout="iluuvmyself()"><a  id="killmee" href="information.html" style="text-decoration: none; color: white;">Get Air Quality</a></button>
+      <button id="goTime" type="button" onmouseover="ih8myself()" onmouseout="iluuvmyself()" onclick="storeInpute()" onkeydown = "if(event.keyCode == 13){ document.getElementById('goTime').click();}"><a  id="killmee" href="information.html" style="text-decoration: none; color: white;">Get Air Quality</a></button>
     </div>
 
+  </div>
+  <div id="end">
+    <a href="https://aqicn.org/faq/">Information about Air Quality</a>
   </div>
 </body>
 <script>
 function ih8myself(){
-  document.getElementById("killmee").innerHTML = "I <3 Hayward";
+  document.getElementById("killmee").innerHTML = "Check it out!";
 }
 function iluuvmyself(){
   document.getElementById("killmee").innerHTML = "Get Air Quality";
 }
+function storeInpute(){
+  var nameInput = document.getElementById("input-1").value;
+  sessionStorage.setItem("storageName", nameInput);
+  self.location = "information.html"
+}
+document.getElementById("maindiv").addEventListener("keyup", function(event){
+  event.preventDefault();
+  if(event.keyCode == 13){
+    document.getElementById("goTime").click();
+  }
+});
 </script>
+
+
 
 </html>

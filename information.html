@@ -22,18 +22,80 @@
 </head>
 
 <body id="maindiv">
-  <div style="text-align:center;">
-	<div>
-    <h1> City Name </h1>
+  <div id="gradient">
+    <div style="text-align:center;">
+      <h1 id="City-Description"> Cityds </h1>
+    </div>
+    <div style="width:800px; margin:0 auto; text-align:center; margin-top: 100px;">
+      <span  id="city-aqi-container"></span>
+    </div>
+    <footer>
+      <p id="foots"></p><br>
+    </footer>
+    <div id="end">
+      <a href="https://aqicn.org/faq/">Information about Air Quality</a>
+    </div>
   </div>
-
-    
-
-
-  </div>
-
-
-
-
 </body>
+
+<script  type="text/javascript"  charset="utf-8">
+    (function(w,d,t,f){  w[f]=w[f]||function(c,k,n){s=w[f],k=s['k']=(s['k']||(k?('&k='+k):''));s['c']=
+    c=(c  instanceof  Array)?c:[c];s['n']=n=n||0;L=d.createElement(t),e=d.getElementsByTagName(t)[0];
+    L.async=1;L.src='http://feed.aqicn.org/feed/'+(c[n].city)+'/'+(c[n].lang||'')+'/feed.v1.js?n=4710da7b8705584c2a6779f661b88926220b07ee'+n+k;
+    e.parentNode.insertBefore(L,e);  };  })(  window,document,'script','_aqiFeed'  );
+</script>
+
+
+<script  type="text/javascript"  charset="utf-8">
+var nameInput = sessionStorage.getItem("storageName");
+console.log(nameInput);
+document.getElementById("City-Description").innerHTML = nameInput;
+    //_aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><p style='font-size:30px'> The Air Quality  is  %aqiv </p><p id='attr' style='display:none;'> %attribution </p> ",  container:"city-aqi-container",  city:nameInput.toString(), lang:null  });
+var promise = new Promise(function(resolve, reject) {
+  _aqiFeed({ display:"<p style='font-size:30px'> Data obtained on %date <br></p><p style='font-size:30px'> From %cityname <br></p><div style='font-size:30px'> The Air Quality  is <b> %aqiv </b> </div><p id='attr' style='display:none;'> %attribution </p><p id='imp' style='display:none;'>%impact </p> ",  container:"city-aqi-container",  city:nameInput.toString().replace(/ /g,''), lang:null  });
+ //http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=64525199534a6a11475cff03866c7e29
+ //api.openweathermap.org/data/2.5/weather?q={cityname}
+  setTimeout(function() {resolve(5); }, 3000);
+});
+
+promise.then(function(result) {
+
+  document.getElementById("foots").innerHTML = document.getElementById("attr").innerHTML;
+  document.getElementById("foots").style.display="block";
+  console.log(document.getElementById("imp").innerHTML);
+  gradient((document.getElementById("imp").innerHTML).replace(/ /g,''));
+
+
+});
+function gradient(inp){
+  console.log(inp);
+  if (inp.toString() == "Good"){
+    document.getElementById("gradient").style.backgroundColor = "#31bc1c";
+    alert("You're good to go! The air is clear!");
+  }
+    else if (inp.toString() == "Moderate"){
+    document.getElementById("gradient").style.backgroundColor = "#f7ff21";
+    alert("The air is okay, not great, but you'll survive.");
+  }
+    else if (inp.toString() == "UnhealthyforSensitiveGroups"){
+    document.getElementById("gradient").style.backgroundColor = "#eda115";
+    alert("For certain people with respiratory conditions the air isn't safe, but other people will be unaffected.");
+  }
+    else if (inp.toString() == "Unhealthy"){
+    document.getElementById("gradient").style.backgroundColor = "#cc340e";
+    alert("The air is pretty unhealthy to breathe, you'll likely experience health effects if you breathe it! I would stay indoors.");
+  }
+    else if (inp.toString() == "VeryUnhealthy"){
+    document.getElementById("gradient").style.backgroundColor = "#4c1789";
+    alert("The air is extremely unhealthy and everyone who breathes the air will be negatively affected. Definitely stay indoors!");
+  }
+    else if (inp.toString() == "Hazardous"){
+    document.getElementById("gradient").style.backgroundColor = "#561010";
+    alert("HAZARDOUS! BREATHING THE AIR WILL CAUSE SERIOUS NEGATIVE HEALTH EFFECTS! STAY INDOORS!");
+  }
+};
+
+
+</script>
+
 </html>
